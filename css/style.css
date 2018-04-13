@@ -1,0 +1,43 @@
+.title--page {
+    color: white;
+}
+
+.rainbow-text {
+    animation-name: rainbow-title;
+    animation-duration: 2s;
+    animation-iteration-count:infinite;
+}
+
+/* Não é compatível com Safari < 8 foda-se*/
+@keyframes rainbow-title {
+    0%   {color:red;}
+    16%  {color:orange;}
+    32%  {color:yellow;}
+    48%  {color:green;}
+    64%  {color:blue;}
+    80%  {color:violet;}
+    100% {color:purple;}
+}
+
+.title--page--bold {
+	animation-name: rainbow-title-size;
+	animation-duration: 1s;
+    animation-iteration-count:infinite;
+}
+
+@keyframes rainbow-title-size {
+    0%   {font-size: 1em;}
+    50%  {font-size: 2em;}
+    100% {font-size: 1em;}
+}
+
+.textarea_wrapper {
+	width: 100%;
+	height: 100%;
+	padding-right: 5%;
+	padding-left: 5%;
+}
+
+.textarea {
+	width: 100%;	
+}
