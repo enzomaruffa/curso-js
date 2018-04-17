@@ -63,14 +63,44 @@
 	<script src="insersor.js"></script>
 	<script>
 
-	MAX_CLASSES = 5;
-	classes_doidas = ["rainbow", "increase_x_size", "rainbow_bg", "infinite_spin", "increase_y_size"];
+	MAX_CLASSES = 9;
+	MAX_DUR = 5;
+	MIN_DUR = 1
+	classes_doidas = ["rainbow", "increase_x_size", "increase_y_size", "rainbow_bg", "infinite_spin_right", "infinite_spin_left", "rotate_3d", "perspective", "translate"];
 
 	$( document ).ready(function() {
 
 		$(".modifier_item").click( function() {
 			$(this).toggleClass("active");
 		} );
+
+		function DOIDERA() {
+			$(".DOIDERA").each(function() {
+				var elemento = $(this);
+
+				/* Removendo as classes */
+				$(this).attr("style", "");
+
+				var num_classes = Math.floor(Math.random()*MAX_CLASSES+1);
+				var animations = "";
+				var sorted_animations = [];
+
+				for (var j = 0; j < num_classes; j++) {
+					do {
+						/* Sorteia alguma classe */
+						rand_class_id = Math.floor(Math.random()*MAX_CLASSES);
+						rand_class = classes_doidas[rand_class_id];
+					} while ($.inArray(rand_class, sorted_animations) >= 0)
+					sorted_animations.push(rand_class);
+
+					rand_dur = Math.random() * (MAX_DUR - MIN_DUR) + MIN_DUR;
+					animations += rand_class + " " + rand_dur + "s infinite, " ;
+				}
+				// remove ultima virgula
+				animations = animations.substring(0, animations.length - 2); 
+				$(this).attr("style", "animation: " + animations + ";");
+			})
+		}
 
 		$("#insert_button").click( function() {
 
@@ -98,33 +128,6 @@
 			DOIDERA();
 		});
 
-		function DOIDERA() {
-			$(".DOIDERA").each(function() {
-				var elemento = $(this);
-
-				/* Removendo as classes */
-				$(this).attr("style", "");
-
-				var num_classes = Math.floor(Math.random()*MAX_CLASSES+1);
-				var animations = "";
-				var sorted_animations = [];
-
-				for (var j = 0; j < num_classes; j++) {
-					do {
-						/* Sorteia alguma classe */
-						rand_class_id = Math.floor(Math.random()*MAX_CLASSES);
-						rand_class = classes_doidas[rand_class_id];
-					} while ($.inArray(rand_class, sorted_animations) >= 0)
-					sorted_animations.push(rand_class);
-
-					rand_dur = Math.random() * (5 - 2) + 2;
-					animations += rand_class + " " + rand_dur + "s infinite, " ;
-				}
-				// remove ultima virgula
-				animations = animations.substring(0, animations.length - 2); 
-				$(this).attr("style", "animation: " + animations + ";");
-			})
-		}
 	});
 
 	</script>
