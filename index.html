@@ -63,10 +63,11 @@
 	<script src="insersor.js"></script>
 	<script>
 
-	MAX_CLASSES = 3;
-	classes_doidas = ["rainbow", "increase_size", "rainbow_bg"];
+	MAX_CLASSES = 5;
+	classes_doidas = ["rainbow", "increase_x_size", "rainbow_bg", "infinite_spin", "increase_y_size"];
 
 	$( document ).ready(function() {
+
 		$(".modifier_item").click( function() {
 			$(this).toggleClass("active");
 		} );
@@ -102,23 +103,26 @@
 				var elemento = $(this);
 
 				/* Removendo as classes */
-				for (var j in classes_doidas) { 
-					elemento.removeClass(classes_doidas[j])
-				}
+				$(this).attr("style", "");
 
 				var num_classes = Math.floor(Math.random()*MAX_CLASSES+1);
+				var animations = "";
+				var sorted_animations = [];
 
 				for (var j = 0; j < num_classes; j++) {
 					do {
 						/* Sorteia alguma classe */
 						rand_class_id = Math.floor(Math.random()*MAX_CLASSES);
 						rand_class = classes_doidas[rand_class_id];
-					} while (elemento.hasClass(rand_class))
-					elemento.addClass(rand_class);
+					} while ($.inArray(rand_class, sorted_animations) >= 0)
+					sorted_animations.push(rand_class);
 
 					rand_dur = Math.random() * (5 - 2) + 2;
-					$(this).css("animation-duration", rand_dur + "s")
+					animations += rand_class + " " + rand_dur + "s infinite, " ;
 				}
+				// remove ultima virgula
+				animations = animations.substring(0, animations.length - 2); 
+				$(this).attr("style", "animation: " + animations + ";");
 			})
 		}
 	});

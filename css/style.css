@@ -74,14 +74,41 @@
     100% {background-color:purple;}
 }
 
-.increase_size {
-	animation-name: increase_size;
+.increase_x_size {
+	animation-name: increase_x_size;
 	animation-duration: 1s;
     animation-iteration-count:infinite;
 }
 
-@keyframes increase_size {
-    0%   {font-size: 1em;}
-    50%  {font-size: 1.5em;}
-    100% {font-size: 1em;}
+@keyframes increase_x_size {
+  0% { transform: scaleX(1); }
+  50% { transform: scaleX(1.5); }
+  100% { transform: scaleX(1); }
+}
+
+.increase_y_size {
+    animation-name: increase_y_size;
+    animation-duration: 1s;
+    animation-iteration-count:infinite;
+}
+
+@keyframes increase_y_size {
+  0% { transform: scaleY(1); }
+  50% { transform: scaleY(1.5); }
+  100% { transform: scaleY(1); }
+}
+
+.infinite_spin {
+    animation-name: infinite_spin;
+    animation-duration: 1s;
+    animation-iteration-count:infinite;
+}
+
+@keyframes infinite_spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
